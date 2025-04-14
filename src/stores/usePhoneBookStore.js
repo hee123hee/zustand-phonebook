@@ -1,15 +1,18 @@
-import React from 'react';
-import { create } from 'zustand';
+import { create } from "zustand";
 
-const UsePhoneBookStore = create((set) => ({
+const usePhoneBookStore = create((set) => ({
     phoneBook: [],
     addContact: (name, phoneNumber) =>
         set((state) => ({
             phoneBook: [
                 ...state.phoneBook,
-                { id: Date.now(), name, phoneNumber }
+                { id: Date.now(), name, phoneNumber },
             ],
+        })),
+    deleteContact: (id) =>
+        set((state) => ({
+            phoneBook: state.phoneBook.filter((contact) => contact.id !== id),
         })),
 }));
 
-export default UsePhoneBookStore;
+export default usePhoneBookStore;
